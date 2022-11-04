@@ -48,8 +48,6 @@ const EditUserPage = () => {
                 qualities: data.qualities.map((q) => q.value)
             })
         );
-
-        history.push(`/users/${currentUser._id}`);
     };
     function getQualitiesListByIds(qualitiesIds) {
         const qualitiesArray = [];
