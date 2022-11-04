@@ -48,8 +48,8 @@ const {
     commentCreateFailed
 } = actions;
 
-const commentRemoveRequested = createAction("commentRemoveRequested");
-const commentCreateRequested = createAction("commentCreateRequested");
+const commentRemoveRequested = createAction("comments/RemoveRequested");
+const commentCreateRequested = createAction("comments/CreateRequested");
 
 export const loadCommentsList = (userId) => async (dispatch) => {
     dispatch(commentsRequested());
