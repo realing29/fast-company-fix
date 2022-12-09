@@ -1,4 +1,4 @@
-import { createAction, createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 import commentService from "../services/comment.service";
 
 const commentsSlice = createSlice({
@@ -66,7 +66,7 @@ export const removeComment = (id) => async (dispatch) => {
     dispatch(commentRemoveRequested());
     try {
         const { content } = await commentService.removeComment(id);
-        if (content === null) dispatch(commentRemoved(id));
+        if (!content) dispatch(commentRemoved(id));
     } catch (error) {
         dispatch(commentRemoveFailed(error.message));
     }
@@ -75,8 +75,6 @@ export const createComment = (data) => async (dispatch, getState) => {
     dispatch(commentCreateRequested());
     const comment = {
         ...data,
-        _id: nanoid(),
-        created_at: Date.now(),
         userId: getState().users.auth.userId
     };
     try {
